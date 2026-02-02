@@ -13,12 +13,7 @@
     }
   ],
   "env": {
-    "DB_TYPE": "postgresdb",
-    "DB_POSTGRESDB_HOST": "@supabase-host",
-    "DB_POSTGRESDB_DATABASE": "@supabase-database",
-    "DB_POSTGRESDB_PORT": "@supabase-port",
-    "DB_POSTGRESDB_USER": "@supabase-user",
-    "DB_POSTGRESDB_PASSWORD": "@supabase-password",
+    "DATABASE_URL": "@database-url",
     "PORT": "5678",
     "N8N_LOG_LEVEL": "info",
     "GENERIC_TIMEZONE": "Europe/Paris",
