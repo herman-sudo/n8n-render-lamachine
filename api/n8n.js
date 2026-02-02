@@ -1,8 +1,8 @@
 const { exec } = require("child_process");
 const express = require("express");
 
+// Créer l'application Express
 const app = express();
-const port = process.env.PORT || 5678;
 
 // Middleware pour parser le JSON
 app.use(express.json());
@@ -16,7 +16,7 @@ const n8nConfig = {
   N8N_DEFAULT_LOCALE: process.env.N8N_DEFAULT_LOCALE || "fr",
   N8N_ENCRYPTION_KEY: process.env.N8N_ENCRYPTION_KEY,
   WEBHOOK_URL: process.env.WEBHOOK_URL,
-  PORT: port,
+  PORT: process.env.PORT || 5678,
 };
 
 // Routes de base
@@ -59,4 +59,6 @@ app.get("/n8n", (req, res) => {
 });
 
 // Export pour Vercel
-module.exports = app;
+module.exports = (req, res) => {
+  app(req, res);
+};
