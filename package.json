@@ -1,15 +1,15 @@
 {
-  "name": "n8n-vercel-supabase",
+  "name": "n8n-render-supabase",
   "version": "1.0.0",
-  "description": "n8n deployment on Vercel with Supabase database",
+  "description": "n8n deployment on Render with Supabase database",
   "main": "api/n8n.js",
   "scripts": {
     "start": "node api/n8n.js",
-    "dev": "vercel dev"
+    "dev": "nodemon api/n8n.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "@vercel/node": "^3.0.0"
+    "n8n": "^latest"
   },
   "engines": {
     "node": ">=18.0.0"
