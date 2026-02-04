@@ -91,9 +91,56 @@ Le cronjob s'exécutera toutes les 10 minutes pour :
 
 ---
 
+## 📊 Metabase - Visualisation des données
+
+### Installation de Metabase
+
+Le projet inclut maintenant **Metabase** pour la visualisation des données des agents IA, requêtes et tokens.
+
+#### Services déployés :
+
+1. **n8n** : https://n8n-a6u8.onrender.com
+2. **Metabase** : https://metabase-a6u8.onrender.com
+
+#### Configuration des vues SQL :
+
+```bash
+# Exécuter le script de configuration
+./setup-metabase.sh
+```
+
+Ce script crée les vues suivantes dans votre base de données :
+
+- **agent_stats** : Statistiques générales des agents IA
+- **agent_token_usage** : Consommation de tokens par agent
+- **workflow_agent_queries** : Requêtes par workflow et agent
+- **daily_agent_activity** : Activité journalière des agents
+- **agent_performance_metrics** : Métriques de performance
+- **agent_credentials_usage** : Utilisation des credentials
+- **token_trends** : Tendances d'utilisation des tokens
+
+#### Dashboard Metabase :
+
+Après déploiement :
+
+1. Accédez à https://metabase-a6u8.onrender.com
+2. Créez votre compte administrateur
+3. Connectez-vous à la base de données PostgreSQL avec les mêmes identifiants que n8n
+4. Importez les vues SQL pour créer des dashboards
+
+#### Métriques disponibles :
+
+- **Messages par agent** : Nombre total et tendances
+- **Consommation de tokens** : Estimation et suivi
+- **Performance des workflows** : Temps d'exécution
+- **Activité journalière** : Pics d'utilisation
+- **Utilisation des credentials** : Sécurité et accès
+
+---
+
 **Cette instance sera gratuite avec les plans gratuits Render et Supabase.**
 
-Créé par HERMAN MOUKAM pour La Machine. Adapté pour Render + Supabase.
+Créé par HERMAN MOUKAM pour La Machine. Adapté pour Render + Supabase + Metabase.
 
 **Connection Supabase :**
 

@@ -26,3 +26,29 @@ services:
         value: https://n8n-a6u8.onrender.com
       - key: N8N_DISABLE_TASK_RUNNERS
         value: "true"
+
+  - type: web
+    name: metabase
+    env: docker
+    region: frankfurt
+    plan: free
+    branch: main
+    numInstances: 1
+    healthCheckPath: /api/health
+    envVars:
+      - key: MB_DB_TYPE
+        value: postgres
+      - key: MB_DB_DBNAME
+        value: postgres
+      - key: MB_DB_PORT
+        value: 5432
+      - key: MB_DB_HOST
+        value: db.kbeseafmtepfjatzvjnr.supabase.co
+      - key: MB_DB_USER
+        value: postgres
+      - key: MB_DB_PASS
+        value: YjxBJtgTwSlBxnSQ
+      - key: MB_SITE_URL
+        value: https://metabase-a6u8.onrender.com
+      - key: JAVA_OPTS
+        value: "-Xmx750m"
