@@ -30,7 +30,7 @@ services:
       - key: N8N_HOST
         value: 0.0.0.0
       - key: N8N_LOG_LEVEL
-        value: info
+        value: debug
       - key: GENERIC_TIMEZONE
         value: Europe/Paris
       - key: TZ
@@ -78,7 +78,7 @@ services:
       - key: N8N_DB_POSTGRESDB_PASSWORD
         value: YjxBJtgTwSlBxnSQ
       - key: N8N_LOG_LEVEL
-        value: info
+        value: debug
       - key: GENERIC_TIMEZONE
         value: Europe/Paris
       - key: TZ
