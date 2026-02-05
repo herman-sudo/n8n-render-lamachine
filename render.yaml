@@ -30,13 +30,47 @@ services:
       - key: WEBHOOK_URL
         value: https://n8n-a6u8.onrender.com
       - key: N8N_DISABLE_TASK_RUNNERS
-        value: "true"
+        value: "false"
       - key: DB_CONNECTION_POOL_SIZE
         value: "10"
       - key: DB_CONNECTION_POOL_MIN
         value: "2"
       - key: DB_CONNECTION_TIMEOUT
         value: "60000"
+      - key: N8N_DB_TYPE
+        value: postgresql
+      - key: N8N_DB_POSTGRESDB_HOST
+        value: db.kbeseafmtepfjatzvjnr.supabase.co
+      - key: N8N_DB_POSTGRESDB_PORT
+        value: "5432"
+      - key: N8N_DB_POSTGRESDB_DATABASE
+        value: postgres
+      - key: N8N_DB_POSTGRESDB_USER
+        value: postgres
+      - key: N8N_DB_POSTGRESDB_PASSWORD
+        value: YjxBJtgTwSlBxnSQ
+
+  - type: worker
+    name: n8n-task-runner
+    env: docker
+    dockerfilePath: ./Dockerfile
+    region: frankfurt
+    plan: free
+    branch: main
+    numInstances: 1
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://postgres:YjxBJtgTwSlBxnSQ@db.kbeseafmtepfjatzvjnr.supabase.co:5432/postgres
+      - key: N8N_LOG_LEVEL
+        value: info
+      - key: GENERIC_TIMEZONE
+        value: Europe/Paris
+      - key: TZ
+        value: Europe/Paris
+      - key: N8N_DEFAULT_LOCALE
+        value: fr
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
       - key: N8N_DB_TYPE
         value: postgresql
       - key: N8N_DB_POSTGRESDB_HOST
