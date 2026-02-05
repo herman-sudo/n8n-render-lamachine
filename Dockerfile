@@ -18,5 +18,5 @@ COPY . .
 # Expose port
 EXPOSE 5678
 
-# Start n8n with tunnel
-CMD ["n8n", "start", "--tunnel"]
+# Start n8n with environment variables
+CMD ["sh", "-c", "n8n start"]
