@@ -4,6 +4,12 @@
 echo "🚀 Démarrage de n8n avec PostgreSQL..."
 echo ""
 
+# Charger les variables d'environnement si le fichier .env existe (utile pour le local)
+if [ -f .env ]; then
+  echo "📄 Chargement du fichier .env..."
+  export $(grep -v '^#' .env | xargs)
+fi
+
 # Afficher la configuration (sans les mots de passe)
 echo "📋 Configuration:"
 echo "  DB_TYPE: ${DB_TYPE}"
@@ -42,8 +48,29 @@ if [ -n "$DATABASE_URL" ]; then
 fi
 
 echo ""
-echo "🔄 Lancement de n8n..."
-echo ""
+# Vérifier si n8n est installé globalement ou localement
+if command -v n8n >/dev/null 2>&1; then
+    N8N_CMD="n8n"
+elif [ -f "./node_modules/.bin/n8n" ]; then
+    N8N_CMD="./node_modules/.bin/n8n"
+else
+    echo "❌ CRITICAL ERROR: n8n executable not found!"
+    exit 1
+fi
+
+echo "✅ Found n8n: $N8N_CMD"
+
+# Vérifier la connexion à la base de données avant de démarrer
+if [ -f "./check-db-connection.js" ]; then
+    echo "🔍 Running Pre-flight DB Check..."
+    node check-db-connection.js
+    if [ $? -eq 0 ]; then
+        echo "✅ DB Check Passed."
+    else
+        echo "⚠️ DB Check Failed or Warning. Proceeding anyway but check logs."
+    fi
+fi
 
 # Démarrer n8n avec les variables d'environnement
-exec n8n start
+echo "🔄 Lancement de n8n..."
+exec $N8N_CMD start

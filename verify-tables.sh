@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Script pour vérifier les tables n8n dans Supabase
-source .env 2>/dev/null || true
+if [ -f .env ]; then
+  export $(grep -v '^#' .env | xargs)
+fi
 
 echo "🔍 Vérification des tables n8n dans Supabase..."
 echo ""
